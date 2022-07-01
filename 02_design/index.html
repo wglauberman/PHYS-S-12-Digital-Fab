@@ -60,6 +60,49 @@
   and here it is in action:
   
   (add video)
+  
+  I have also pasted the Arduino code here. Basically what it is doing is starting off slow in one direction, gradually
+  picking up pace, and stopping after ~12 seconds. Then it would do the same thing in reverse. The reason I had it pick
+  up speed is because my block is supposed to be "running around the track" and so I'm trying to make it seem like it
+  starts out lightly jogging, and moves into full on running.
+  
+  void setup() {
+  pinMode(A1A, OUTPUT); 
+  pinMode(A1B, OUTPUT);
+  analogWrite(A1A, 0); 
+  digitalWrite(A1B, LOW);
+}
+
+void loop() {
+
+  analogWrite(A1A, 100);
+  digitalWrite(A1B, LOW);
+  delay(4000); 
+
+  analogWrite(A1A, 150);
+  delay(4000);  
+
+  analogWrite(A1A, 200);
+  delay(4000); 
+
+  analogWrite(A1A, 0); 
+  delay(2500);   
+
+  digitalWrite(A1B, HIGH); 
+  analogWrite(A1A, 255-100); 
+  delay(4000);              
+
+  analogWrite(A1A, 255-150); 
+  delay(4000);
+
+  analogWrite(A1A, 255-200);
+  delay(4000);
+
+  analogWrite(A1A, 0);
+  digitalWrite(A1B, LOW);
+  delay(2500);
+
+}
 
 </xmp>
 </body>
