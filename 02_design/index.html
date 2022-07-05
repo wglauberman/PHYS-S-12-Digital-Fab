@@ -54,7 +54,7 @@
   I wanted to implement my previous project into this new project, so I connected an arduino to a motor driver + a breadboard with
   a button to my motor and by pressing the button made it increase speed. My drawing of the circuit looks like this
   
-  ![image of embroidery](buttonsketch.jpeg)
+  ![image of embroidery](buttonsketch.jpg)
   
   Here is the setup in the real world:
   
@@ -64,47 +64,44 @@
   
   ![video of embroidery](buttonarduino.MOV)
   
-  I have also pasted the Arduino code here. Basically what it is doing is starting off slow in one direction, gradually
-  picking up pace, and stopping after ~12 seconds. Then it would do the same thing in reverse. The reason I had it pick
-  up speed is because my block is supposed to be "running around the track" and so I'm trying to make it seem like it
-  starts out lightly jogging, and moves into full on running.
+  I have also pasted the Arduino code here. Basically what it is doing is after I press the button it starts off slow, gradually
+  picking up pace, and stopping after I let go of the button. The reason I had it pick up speed is because my block is supposed to 
+  be "running around the track" and so I'm trying to make it seem like it starts out lightly jogging, and moves into full on running.
   
-  void setup() {
-  pinMode(A1A, OUTPUT); 
+  const int buttonPin = 2;
+const int A1A = 3;
+const int A1B = 4;
+
+
+int buttonState = 0;
+
+void setup() {
+  pinMode(A1A, OUTPUT);
   pinMode(A1B, OUTPUT);
-  analogWrite(A1A, 0); 
+  pinMode(buttonPin, INPUT_PULLUP);
+  analogWrite(A1A, 0);
   digitalWrite(A1B, LOW);
 }
 
 void loop() {
-
-  analogWrite(A1A, 100);
-  digitalWrite(A1B, LOW);
-  delay(4000); 
-
-  analogWrite(A1A, 150);
-  delay(4000);  
-
-  analogWrite(A1A, 200);
-  delay(4000); 
-
-  analogWrite(A1A, 0); 
-  delay(2500);   
-
-  digitalWrite(A1B, HIGH); 
-  analogWrite(A1A, 255-100); 
-  delay(4000);              
-
-  analogWrite(A1A, 255-150); 
-  delay(4000);
-
-  analogWrite(A1A, 255-200);
-  delay(4000);
-
-  analogWrite(A1A, 0);
-  digitalWrite(A1B, LOW);
-  delay(2500);
-
+  buttonState = digitalRead(buttonPin);
+  long curmillis = millis();
+  
+  if (buttonState == LOW && curmillis < 3000) {
+    analogWrite(A1A, 100);
+    digitalWrite(A1B, LOW);
+  }
+  if (buttonState == LOW && 3000 < curmillis && curmillis < 6000) {
+    analogWrite(A1A, 150);
+    digitalWrite(A1B, LOW);
+  }
+  if (buttonState == LOW && 6000 < curmillis < 9000) {
+    analogWrite(A1A, 200);
+    digitalWrite(A1B, LOW);
+  } else {
+    analogWrite(A1A, 0);
+    digitalWrite(A1B, LOW);
+  }
 }
 
 </xmp>
