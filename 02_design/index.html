@@ -18,7 +18,7 @@
   to use a motor and a gear to make it appear like an object was moving along a circle. First, I found this wood box roughly
   measuing 30mm by 10mm:
 
-  ![image of embroidery](bricknew.jpeg)
+  ![image of embroidery](brickfix.jpg)
   
   Then, I quickly modeled the rings of the course and downloaded a gear on a Fusion 360 add in. Here is one of the rings:
   
@@ -46,20 +46,23 @@
   
   ![video of embroidery](motorspin.mov)
   
+  Reading the machine, the volts were on average about 5.5V and the current was 1.85A so by V=IR (I = current, V = volts,
+  R = resistance) I found out there was about 2.97 ohms of resistance on average in my machine.
+  
   ### Week 2: Arduino and Motors
   
-  I wanted to implement my previous project into this new project, so I connected an arduino to a motor driver to my motor
-  and made it spin at various speeds. My drawing of the circuit looks like this
+  I wanted to implement my previous project into this new project, so I connected an arduino to a motor driver + a breadboard with
+  a button to my motor and by pressing the button made it increase speed. My drawing of the circuit looks like this
   
-  ![image of embroidery](circuitsketch.jpeg)
+  ![image of embroidery](buttonsketch.jpeg)
   
   Here is the setup in the real world:
   
-  ![image of embroidery](arduinosetup.jpg)
+  ![image of embroidery](buttonsetup.jpg)
   
   and here it is in action:
   
-  ![video of embroidery](motorandarduino.mov)
+  ![video of embroidery](buttonarduino.MOV)
   
   I have also pasted the Arduino code here. Basically what it is doing is starting off slow in one direction, gradually
   picking up pace, and stopping after ~12 seconds. Then it would do the same thing in reverse. The reason I had it pick
