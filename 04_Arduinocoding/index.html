@@ -12,13 +12,60 @@
 
 
 
-  ### Week 1: Introduction 
+  ### Week 4: Arduino and Motors
+  
+  I wanted to implement my previous project into this new project, so I connected an arduino to a motor driver + a breadboard with
+  a button to my motor and by pressing the button made it increase speed. My drawing of the circuit looks like this
+  
+  ![image of embroidery](buttonsketch.jpg)
+  
+  Here is the setup in the real world:
+  
+  ![image of embroidery](buttonsetup.jpg)
+  
+  and here it is in action:
+  
+  ![video of embroidery](buttonarduino.MOV)
+  
+  I have also pasted the Arduino code here. Basically what it is doing is after I press the button it starts off slow, gradually
+  picking up pace, and stopping after I let go of the button. The reason I had it pick up speed is because my block is supposed to 
+  be "running around the track" and so I'm trying to make it seem like it starts out lightly jogging, and moves into full on running.
+  
+  const int buttonPin = 2;
+const int A1A = 3;
+const int A1B = 4;
 
-  Here is an image: 
 
-  ![image of embroidery](./sew.png)
+int buttonState = 0;
 
-  And here is a	[link](../index.html).
+void setup() {
+  pinMode(A1A, OUTPUT);
+  pinMode(A1B, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
+  analogWrite(A1A, 0);
+  digitalWrite(A1B, LOW);
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+  long curmillis = millis();
+  
+  if (buttonState == LOW && curmillis < 3000) {
+    analogWrite(A1A, 100);
+    digitalWrite(A1B, LOW);
+  }
+  if (buttonState == LOW && 3000 < curmillis && curmillis < 6000) {
+    analogWrite(A1A, 150);
+    digitalWrite(A1B, LOW);
+  }
+  if (buttonState == LOW && 6000 < curmillis < 9000) {
+    analogWrite(A1A, 200);
+    digitalWrite(A1B, LOW);
+  } else {
+    analogWrite(A1A, 0);
+    digitalWrite(A1B, LOW);
+  }
+}
 
 
 
