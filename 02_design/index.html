@@ -12,97 +12,45 @@
 
 
 
-  ### Week 2: Motor Design 
+  ### Week 2: Laser Cutting and Fusion 360
   
-  After laser cutting and re-learning Fusion 360, the next task was to involve a motor in something that moves. My idea was
-  to use a motor and a gear to make it appear like an object was moving along a circle. First, I found this wood box roughly
-  measuing 30mm by 10mm:
-
-  ![image of embroidery](brickfix.jpg)
+  My first design task was to laser-cut some press fit shapes (shapes that have cuts so that they can combine with other pieces). First,
+  in class we learned how to make square press-fits, so I made a "3D" effect by putting six of them together like this:
   
-  Then, I quickly modeled the rings of the course and downloaded a gear on a Fusion 360 add in. Here is one of the rings:
+  ![image of embroidery](squarefit.jpeg)
   
-  ![image of embroidery](outermodel.png)
+  Next, because that was easy with perfect symmetry, I tried with a pentagon. The process was roughly the same, making incisions and
+  rounding off the edges, but the shape looked a lot cooler:
   
-  After retrieving a motor and laser-cutting the pieces, this is what it looked like before being put together:
+  ![image of embroidery](pentafit.jpeg)
   
-  ![image of embroidery](pieces.jpeg)
+  Even though I had used Fusion 360 before, I realized I needed a little bit of practice on how to use it. From the tutorital video I
+  watched, I learned lots of things, like how to draw sketch shapes, change measurements, and edit 3D sculptures. Here is a sketch I
+  made based on the video with lines and arches:
   
-  To put it all together, I drilled a hole to put a wooden rod in the brick piece. In the smaller, noncentered hole of the
-  gear in the previous image, I stuck it there and hot glued it into place. I then hot glued the bigger and smaller rings
-  to the face of the gear to resemble a "track". Finally, I hot glued the motor into the center hole, and in the end, it
-  ended up looking like this:
+  ![image of embroidery](weirdthing.png)
   
-  ![image of embroidery](finalproductnew.jpg)
-  ![image of embroidery](finalproductbacknew.jpg)
+  I also made a "pulley" by sketching two circles, adding connecting lines, and trimming the excess lines from the circle:
   
-  The current motor I was using was too small, so I replace it with a motor that fit perfectly in the gear hole spot. To
-  make the "machine" stand on its own without my help. I laser cut a box with holes on the top and side so that the
-  motor and wires could fit in:
+  ![image of embroidery](pulley.png)
   
-  ![image of embroidery](woodenbox.jpg)
+  After the tutorial, I felt I was ready to start the assembly project. I decided to model a pen and a notecard page, and I starting by
+  roughly measuring the dimensions of the pen and paper (pen was about 5mm radius circle with a height of 70mm, and the notecard was
+  about 55 by 65mm). First was the cylinder base for the pen:
   
-  After all that, here is a video showcasing the movement of my block on a track:
+  ![image of embroidery](cylinder.png)
   
-  ![video of embroidery](motorspin.mov)
+  Then, I added the "eraser" and the tip part of the pen, as well as the clicky handle to push the pen tip in and out:
   
-  Reading the machine, the volts were on average about 5.5V and the current was 1.85A so by V=IR (I = current, V = volts,
-  R = resistance) I found out there was about 2.97 ohms of resistance on average in my machine.
+  ![image of embroidery](pen.png)
   
-  ### Week 2: Arduino and Motors
+  Next, I made a box notecard and extruded some lines like how there is on a piece of paper:
   
-  I wanted to implement my previous project into this new project, so I connected an arduino to a motor driver + a breadboard with
-  a button to my motor and by pressing the button made it increase speed. My drawing of the circuit looks like this
+  ![image of embroidery](penpaper.png)
   
-  ![image of embroidery](buttonsketch.jpg)
+  Finally, I made it look like the pen was writing on the paper:
   
-  Here is the setup in the real world:
-  
-  ![image of embroidery](buttonsetup.jpg)
-  
-  and here it is in action:
-  
-  ![video of embroidery](buttonarduino.MOV)
-  
-  I have also pasted the Arduino code here. Basically what it is doing is after I press the button it starts off slow, gradually
-  picking up pace, and stopping after I let go of the button. The reason I had it pick up speed is because my block is supposed to 
-  be "running around the track" and so I'm trying to make it seem like it starts out lightly jogging, and moves into full on running.
-  
-  const int buttonPin = 2;
-const int A1A = 3;
-const int A1B = 4;
-
-
-int buttonState = 0;
-
-void setup() {
-  pinMode(A1A, OUTPUT);
-  pinMode(A1B, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);
-  analogWrite(A1A, 0);
-  digitalWrite(A1B, LOW);
-}
-
-void loop() {
-  buttonState = digitalRead(buttonPin);
-  long curmillis = millis();
-  
-  if (buttonState == LOW && curmillis < 3000) {
-    analogWrite(A1A, 100);
-    digitalWrite(A1B, LOW);
-  }
-  if (buttonState == LOW && 3000 < curmillis && curmillis < 6000) {
-    analogWrite(A1A, 150);
-    digitalWrite(A1B, LOW);
-  }
-  if (buttonState == LOW && 6000 < curmillis < 9000) {
-    analogWrite(A1A, 200);
-    digitalWrite(A1B, LOW);
-  } else {
-    analogWrite(A1A, 0);
-    digitalWrite(A1B, LOW);
-  }
-}
+  ![image of embroidery](finalpenpaper.png)
 
 </xmp>
 </body>
