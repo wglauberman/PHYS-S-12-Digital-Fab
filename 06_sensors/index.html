@@ -34,6 +34,32 @@
   ![image of embroidery](copper1.png)
   ![image of embroidery](copper2.png)
   ![video of embroidery](coppersquare.mov)
+  
+  Here is the arduino code for the copper motor project:
+  
+  const int A1A = 3; 
+const int A1B = 4;
+int sensorPin = A0;
+int sensorValue = 0;
+int buttonState = 0;
+
+void setup() { 
+  pinMode(A1A, OUTPUT); 
+  pinMode(A1B, OUTPUT); 
+  Serial.begin(9600);
+  analogWrite(A1A, 0); digitalWrite(A1B, LOW); 
+  }
+
+void loop() {
+  sensorValue = analogRead(sensorPin); 
+  Serial.println(sensorValue);
+  if (sensorValue > 0) { 
+    analogWrite(A1A, 100); 
+    digitalWrite(A1B, HIGH); 
+    } else { analogWrite(A1A, 0); digitalWrite(A1B, LOW); 
+    } 
+ }
+
 
 
 
