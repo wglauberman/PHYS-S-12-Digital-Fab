@@ -12,13 +12,46 @@
 
 
 
-  ### Week 1: Introduction 
+  ### Week 9: Wifi and ESP32 
 
-  Here is an image: 
+  This week's assignment was very short as we just needed to make something happen with wifi. Since my
+  final project will likely include a motor, I decided to use a ESP32 to make a motor spin by connecting
+  the wifi scan code and some previous code of mine:
+  
+  ![image of embroidery](espmotor.jpg)
+  ![video of embroidery](wifimotor.MOV)
+  
+  Here is the code that was used to do this:
+  
+  '''const int A1A = 26; 
+const int A1B = 27;
 
-  ![image of embroidery](./sew.png)
+#include "WiFi.h"
 
-  And here is a	[link](../index.html).
+void setup() {
+
+  Serial.begin(115200);
+
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(100);
+
+  Serial.println("Setup done");
+
+    
+  pinMode(A1A, OUTPUT); 
+  pinMode(A1B, OUTPUT); 
+  Serial.begin(9600); 
+  analogWrite(A1A, 0); 
+  digitalWrite(A1B, LOW); 
+  }
+
+void loop() {  
+   analogWrite(A1A, 100); 
+   digitalWrite(A1B, HIGH); 
+   delay(5000);
+      }''' 
+
 
 
 
