@@ -12,14 +12,127 @@
 
 
 
-  ### Week 1: Introduction 
+  ### Week 11: Final Project 
 
-  Here is an image: 
+  Out of my two original ideas, I decided to go with the putter since it was more practical. To make the
+  circuits, I used a bunch of previous project ideas and combined them together in new ways. For
+  example, I used my stepper motor code but sped up:
+  
+  const int stepPin = 7;
+const int dirPin = 6;
 
-  ![image of embroidery](./sew.png)
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(stepPin, OUTPUT);
+  pinMode(dirPin, OUTPUT);
+  digitalWrite(dirPin, LOW);
+}
 
-  And here is a	[link](../index.html).
+void loop() {
+  long curmillis = millis();
+  // put your main code here, to run repeatedly:
+  if (curmillis < random(2000,5000)) {
+  digitalWrite(stepPin, LOW);
+  delay(2);
+  digitalWrite(stepPin, HIGH);
+  delay(2);
+  }
+}
 
+  
+  then changed my button code to move the motor forwards and backward:
+  
+  const int buttonPin1 = 2;
+const int buttonPin2 = 5; 
+const int A1A = 3; 
+const int A1B = 4;
+
+int buttonState1 = 0;
+int buttonState2 = 0;
+
+void setup() { 
+  Serial.begin(9600);
+  pinMode(A1A, OUTPUT); 
+  pinMode(A1B, OUTPUT); 
+  pinMode(buttonPin1, INPUT_PULLUP);
+  pinMode(buttonPin2, INPUT_PULLUP);
+  analogWrite(A1A, 0); 
+  digitalWrite(A1B, LOW); 
+  }
+
+void loop() { 
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+//A1B LOW == Counterclockwise
+//AIB HIGH == Clockwise
+
+if (buttonState1 == LOW && buttonState2 == HIGH) { 
+  analogWrite(A1A, 150); digitalWrite(A1B, HIGH); 
+  Serial.println("MOTOR SHOULD BE TURNING");
+  } 
+  else { 
+    analogWrite(A1A, 0); 
+    digitalWrite(A1B, HIGH); 
+    }
+
+if (buttonState2 == LOW && buttonState1 == HIGH) { 
+  analogWrite(A1A, 150); digitalWrite(A1B, LOW); 
+  Serial.println("MOTOR SHOULD BE TURNING");
+  } else { 
+    analogWrite(A1A, 0); 
+    digitalWrite(A1B, LOW); 
+    } 
+    }
+  
+  and finally made a move-motor version for the computer:
+
+  const int A1A = 3; 
+const int A1B = 4;
+
+void setup() { 
+  Serial.begin(9600);
+  pinMode(A1A, OUTPUT); 
+  pinMode(A1B, OUTPUT); 
+  analogWrite(A1A, 0); 
+  digitalWrite(A1B, LOW); 
+  }
+
+void loop() { 
+  long curmillis = millis();
+//A1B LOW == Counterclockwise
+//AIB HIGH == Clockwise
+
+if (curmillis < 500) { 
+  analogWrite(A1A, 150); digitalWrite(A1B, HIGH); 
+  Serial.println("MOTOR SHOULD BE TURNING");
+  } if (500 < curmillis && curmillis < 1500) { 
+  analogWrite(A1A, 150); digitalWrite(A1B, LOW); 
+  Serial.println("MOTOR SHOULD BE TURNING");
+  } else { 
+    analogWrite(A1A, 0); 
+    digitalWrite(A1B, LOW); 
+    } 
+    }
+  
+  
+  Using these, I then started on the design. First, I used a cardboard gear I had made to be a wheel
+  and attached it to the stepper motor:
+  
+  ![image of embroidery](wheelspin.jpg)
+  
+  I used the shop bot to make this putter and golf hole:
+  
+  ![image of embroidery](woodputter.jpg)
+  ![image of embroidery](golfhole.jpg)
+  
+  After putting everything together here is how it turned out:
+  
+  ![image of embroidery](circuits.jpg)
+  ![image of embroidery](finalfinal.jpg)
+  
+  The buttons, which are on the breadboard glued to the wooden motor box, turn the putter left or right.
+  The code does the work for the computer version, and the wheel spinning. If you click on the "Final
+  Project Video" link after reading this page, it will show this in action.
 
 
 </xmp>
